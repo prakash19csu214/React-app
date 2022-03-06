@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import {
   Card,
   CardImg,
-  CardImgOverlay,
   CardTitle,
   CardText,
   CardBody,
-  Media,
 } from "reactstrap";
 
 class DishDetailsComponent extends Component {
@@ -37,7 +35,7 @@ class DishDetailsComponent extends Component {
       const cmmnt = comments.map((comment) => {
         return (
           <li key={comment.id}>
-            <p><b> -- {comment.author}, {comment.date}</b></p>
+            <p><b> -- {comment.author}, {new Intl.DateTimeFormat ('en-US', {year: 'numeric' , month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</b></p>
             <p>{comment.comment}</p>
           </li>
         );
@@ -63,10 +61,13 @@ class DishDetailsComponent extends Component {
     const dishComments = this.renderComments(dish.comments);
     const dishItem = this.renderDish(dish);
     return (
-      <div className="row">
+      <div className="container">
+        <div className="row">
         <div className="col-12 col-md-5 m-1">{dishItem}</div>
         <div className="col-12 col-md-5 m-1">{dishComments}</div>
       </div>
+      </div>
+      
     );
   }
 }
