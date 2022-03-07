@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import {
   Card,
   CardImg,
@@ -7,12 +7,20 @@ import {
   CardBody,
 } from "reactstrap";
 
-class DishDetailsComponent extends Component {
-  constructor(props) {
-    super(props);
-  }
 
-  renderDish(dish) {
+  // constructor(props) {
+  //   super(props);
+  // }  We dont need this here
+
+  // componentDidMount(){
+  //   console.log("Dish component did mount invoked");
+  // }
+
+  // componentDidUpdate(){
+  //   console.log("dish component did update invoked");
+  // }
+
+  function RenderDish({dish}) {
     if (dish != null) {
       return (
         <Card>
@@ -28,7 +36,7 @@ class DishDetailsComponent extends Component {
     }
   }
 
-  renderComments(comments) {
+  function RenderComments({comments}) {
     if (comments == null) {
       <div></div>;
     } else {
@@ -52,22 +60,25 @@ class DishDetailsComponent extends Component {
     }
   }
 
-  render() {
-    const dish = this.props.selectedDish;
-    if(dish==null){
+  const DishDetailsComponent = (props) => {
+    // console.log("dish component render method invoked");
+    if(props.selectedDish==null){
       return(
       <div></div>
       );}
-    const dishComments = this.renderComments(dish.comments);
-    const dishItem = this.renderDish(dish);
+    else{
     return (
       <div className="container">
         <div className="row">
-        <div className="col-12 col-md-5 m-1">{dishItem}</div>
-        <div className="col-12 col-md-5 m-1">{dishComments}</div>
+        <div className="col-12 col-md-5 m-1">
+        <RenderDish dish={props.selectedDish}/>
+        </div>
+        <div className="col-12 col-md-5 m-1">
+        <RenderComments comments={props.selectedDish.comments}/>
+        </div>
       </div>
       </div>
-      
+    
     );
   }
 }
