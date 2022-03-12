@@ -5,7 +5,10 @@ import {
   CardTitle,
   CardText,
   CardBody,
+  Breadcrumb,
+  BreadcrumbItem
 } from "reactstrap";
+import Link from "react-router-dom/Link";
 
 
   // constructor(props) {
@@ -62,24 +65,33 @@ import {
 
   const DishDetailsComponent = (props) => {
     // console.log("dish component render method invoked");
-    if(props.selectedDish==null){
-      return(
-      <div></div>
-      );}
-    else{
     return (
       <div className="container">
         <div className="row">
-        <div className="col-12 col-md-5 m-1">
-        <RenderDish dish={props.selectedDish}/>
+        <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to='/home'>Home</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem>
+              <Link to='/menu'>Menu</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>
+              {props.dish.name}
+            </BreadcrumbItem>
+          </Breadcrumb>
+        <div className="col-12">
+          <h3>{props.dish.name}</h3>
+          <hr />
         </div>
         <div className="col-12 col-md-5 m-1">
-        <RenderComments comments={props.selectedDish.comments}/>
+        <RenderDish dish={props.dish}/>
+        </div>
+        <div className="col-12 col-md-5 m-1">
+        <RenderComments comments={props.comments}/>
         </div>
       </div>
       </div>
     
     );
   }
-}
 export default DishDetailsComponent;

@@ -1,19 +1,20 @@
 import React from "react";
-import { Card, CardImg, CardImgOverlay, CardTitle,} from "reactstrap";
-
+import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem} from "reactstrap";
+import Link from "react-router-dom/Link";
 
   // componentDidMount(){
   //   console.log("Menu component did mount invoked");
   // }
 
-  function MenuDishItem({dish, onClick}){
+  function MenuDishItem({dish}){
     return(
-    <Card key={dish.id}
-    onClick={() => onClick(dish.id)}>
+    <Card>
+    <Link to={`/menu/${dish.id}`}>
     <CardImg width="100%" object src={dish.image} alt={dish.name} />
     <CardImgOverlay body className="ml-5">
       <CardTitle heading>{dish.name}</CardTitle>
     </CardImgOverlay>
+    </Link>
     </Card>
     );
   }
@@ -22,7 +23,7 @@ import { Card, CardImg, CardImgOverlay, CardTitle,} from "reactstrap";
     const menu = props.dishes.map((dish) => {
       return (
         <div  className="col-12 col-md-5 mt-5">
-          <MenuDishItem dish={dish} onClick={props.onClick}/>
+          <MenuDishItem dish={dish}/>
         </div>
       );
     }
@@ -30,6 +31,20 @@ import { Card, CardImg, CardImgOverlay, CardTitle,} from "reactstrap";
 
     return (
       <div className="container">
+        <div className="row">
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to='/home'>Home</Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>
+              Menu
+            </BreadcrumbItem>
+          </Breadcrumb>
+          <div className="col-12">
+            <h3>Menu</h3>
+            <hr />
+          </div>
+        </div>
         <div className="row">
         {menu}
         </div>
