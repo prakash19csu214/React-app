@@ -1,7 +1,7 @@
 export const LEADERS = [
     {
       id: 0,
-      name: 'Peter Pan',
+      name: 'Prakash Singh',
       image: '/assets/images/Profile Pic.png',
       designation: 'Chief Epicurious Officer',
       abbr: 'CEO',
