@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Home from './HomeComponent';
 import Menu from './MenuComponent';
+import About from './AboutComponent';
 import Contact from './ContactComponent';
 import '../App.css';
 import Header from './HeaderComponent';
@@ -41,6 +42,13 @@ class Main extends Component{
       />
     )
   }
+
+  const AboutUs = () => {
+    return(
+      <About leaders={this.state.leaders} />
+    );
+  }
+
   return (
     <div>   
       <Header />
@@ -50,6 +58,7 @@ class Main extends Component{
         {/* exact used to prevent switch from confusion with other menu links */}
         <Route path="/menu/:dishId" component={DishWithId} />
         <Route exact path="/contactus" component={Contact} />
+        <Route exact path="/aboutus" component={AboutUs} />
         <Redirect to="/home" />
       </Switch>
       <Footer />
