@@ -1,4 +1,5 @@
 import React from "react";
+import CommentForm from "./ContactFormComponent";
 import {
   Card,
   CardImg,
@@ -58,6 +59,7 @@ import Link from "react-router-dom/Link";
           <ul className="list-unstyled">
         {cmmnt}
           </ul>
+          <CommentForm />
         </div>
       )
     }
