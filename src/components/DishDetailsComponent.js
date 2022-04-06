@@ -40,7 +40,7 @@ import Link from "react-router-dom/Link";
     }
   }
 
-  function RenderComments({comments}) {
+  function RenderComments({comments, addComment, dishId}) {
     if (comments == null) {
       <div></div>;
     } else {
@@ -59,7 +59,7 @@ import Link from "react-router-dom/Link";
           <ul className="list-unstyled">
         {cmmnt}
           </ul>
-          <CommentForm />
+          <CommentForm dishId={dishId} addComment={addComment}/>
         </div>
       )
     }
@@ -89,7 +89,10 @@ import Link from "react-router-dom/Link";
         <RenderDish dish={props.dish}/>
         </div>
         <div className="col-12 col-md-5 m-1">
-        <RenderComments comments={props.comments}/>
+        <RenderComments comments={props.comments}
+        addComment={props.addComment}
+        dishId={props.dish.id}
+           />
         </div>
       </div>
       </div>
