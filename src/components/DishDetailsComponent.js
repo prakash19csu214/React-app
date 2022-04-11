@@ -12,7 +12,7 @@ import {
 import Link from "react-router-dom/Link";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
-
+import { Fade, FadeTransform, Stagger } from "react-animation-components";
 
 
   // constructor(props) {
@@ -30,6 +30,10 @@ import { baseUrl } from "../shared/baseUrl";
   function RenderDish({dish}) {
     if (dish != null) {
       return (
+        <FadeTransform in 
+          transformProps={{
+            exitTransform: 'scale(0.5) translateY(-50%)'
+          }}>
         <Card>
           <CardImg width="100%" object src={baseUrl + dish.image} alt={dish.name} />
           <CardBody>
@@ -37,6 +41,7 @@ import { baseUrl } from "../shared/baseUrl";
             <CardText>{dish.description}</CardText>
           </CardBody>
         </Card>
+        </FadeTransform>
       );
     } else {
       return <div></div>;
@@ -48,25 +53,34 @@ import { baseUrl } from "../shared/baseUrl";
       <div></div>;
     } else {
       const cmmnt = comments.map((comment) => {
+        
         return (
+          <Fade in>
           <li key={comment.id}>
             <p><b> -- {comment.author}, {new Intl.DateTimeFormat ('en-US', {year: 'numeric' , month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</b></p>
             <p>{comment.comment}</p>
           </li>
+          </Fade>
         );
+      
       });
 
       return(
         <div>
           <h4>Comments</h4>
+          <Stagger in>{
           <ul className="list-unstyled">
+            
         {cmmnt}
-          </ul>
+          </ul>}
+          </Stagger>
+          
           <CommentForm dishId={dishId} postComment={postComment}/>
         </div>
       )
     }
   }
+  
 
   const DishDetailsComponent = (props) => {
     // console.log("dish component render method invoked");
