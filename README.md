@@ -1,3 +1,5 @@
+This app has been deployed on https://prakash-restaurantapp.herokuapp.com/ (Note: Most of the content of this app is on json-server, so some content might failed to fetch details due to this server)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
